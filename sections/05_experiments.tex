@@ -1,0 +1,8 @@
+\section{Experimental Setup}
+\label{sec:setup}
+
+\paragraph{Systems.}
+Rule baselines: Presidio with its Korean recognisers enabled, and ko-pii (checksum and anchor rules). Token classifiers: OpenAI Privacy Filter (English) and its multilingual fine-tune, and a KLUE-RoBERTa-large classifier fine-tuned on our training split as an in-domain ceiling. Frontier APIs: \todo{gpt-5.6-sol/luna, claude-sonnet-5, gemini-3.8-flash, solar-pro4}. Open weights: \todo{Qwen3.6-35B-A3B, gpt-oss-120b, Gemma-4-31B, Llama-3.1-8B}. Korean-developed open weights: \todo{Kanana-2-30B-A3B, HyperCLOVAX-SEED-Think-14B, EXAONE-4.0-32B, A.X-3.1-Light vs A.X-4.0-Light (same size, native vs Qwen-derived tokeniser)}, and small models \todo{Qwen3.6-9B, Mi:dm-2.0-Mini}. Models used for corpus composition are reported but excluded from the headline ranking.
+
+\paragraph{Protocol.}
+Identical zero-shot prompts, temperature 0, JSON output; reasoning models with thinking on and off; three seeds for open models. All open models run on a single 80\,GB GPU. \todo{prompt version, max context handling for 16k documents}

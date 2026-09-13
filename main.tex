@@ -1,0 +1,72 @@
+%% Kiii Kiii — ICAIF'26 Workshop on Financial AI Security, Privacy, and Safety
+%% Submission: \documentclass[sigconf,anonymous,review]{acmart}   (4 pages excl. references/appendix, double-blind)
+%% Camera-ready: \documentclass[sigconf]{acmart} and remove \anonv
+\documentclass[sigconf,anonymous,review]{acmart}
+
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{kotex}          % Korean examples in text; comment out if Overleaf compiler lacks kotex (use xelatex/lualatex)
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=*}
+
+%% --- anonymisation helpers: \anonv{visible}{hidden} shows the first arg in review mode
+\newif\ifanonymous\anonymoustrue
+\newcommand{\anonv}[2]{\ifanonymous#1\else#2\fi}   % acmart already defines \anon; ours is \anonv{visible-in-review}{camera-ready}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+
+%% ACM metadata (workshop is non-archival; keep minimal)
+\setcopyright{none}
+\copyrightyear{2026}
+\acmYear{2026}
+\acmDOI{}
+\acmISBN{}
+\acmConference[ICAIF '26 Workshop]{Workshop on Financial AI Security, Privacy, and Safety at ICAIF '26}{November 14--15, 2026}{Milan, Italy}
+\settopmatter{printacmref=false}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+
+\begin{document}
+
+\title{Kiii Kiii: A Regulation-Grounded Benchmark for Korean Financial PII Detection under Realistic Surface-Form Variation}
+%% working alternatives:
+%% "Beyond the Regex: Benchmarking Korean Financial PII Detection for AI Data Loss Prevention"
+
+\author{\anonv{Anonymous Authors}{Hanwool Albert Lee}}
+\affiliation{\institution{\anonv{Anonymous Institution}{AIM Intelligence}}\city{Seoul}\country{Republic of Korea}}
+\email{\anonv{anonymous@example.com}{hanwool@aim-intelligence.com}}
+
+\author{\anonv{}{Sunghyun Kim}}
+\affiliation{\institution{\anonv{}{Toss Securities}}\city{\anonv{}{Seoul}}\country{\anonv{}{Republic of Korea}}}
+
+\renewcommand{\shortauthors}{\anonv{Anonymous}{Lee and Kim}}
+
+\begin{abstract}
+\input{sections/00_abstract}
+\end{abstract}
+
+\begin{CCSXML}
+<ccs2012>
+<concept><concept_id>10002978.10003029</concept_id><concept_desc>Security and privacy~Human and societal aspects of security and privacy</concept_desc><concept_significance>500</concept_significance></concept>
+<concept><concept_id>10010147.10010178.10010179</concept_id><concept_desc>Computing methodologies~Natural language processing</concept_desc><concept_significance>300</concept_significance></concept>
+</ccs2012>
+\end{CCSXML}
+\ccsdesc[500]{Security and privacy~Human and societal aspects of security and privacy}
+\ccsdesc[300]{Computing methodologies~Natural language processing}
+\keywords{PII detection, de-identification, data loss prevention, Korean, financial regulation, benchmark, large language models}
+
+\maketitle
+
+\input{sections/01_introduction}
+\input{sections/02_related_work}
+\input{sections/03_taxonomy}
+\input{sections/04_benchmark}
+\input{sections/05_experiments}
+\input{sections/06_results}
+\input{sections/07_conclusion}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\appendix
+\input{sections/A_appendix}
+
+\end{document}
