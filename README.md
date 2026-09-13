@@ -1,4 +1,4 @@
-# Kiii Kiii — ICAIF'26 Workshop paper (Overleaf-synced)
+# Kiii² (Kiii Kiii) — ICAIF'26 Workshop paper (Overleaf-synced)
 
 - 본문 원본은 **Overleaf**. 이 레포는 Overleaf GitHub 연동 대상이며, 연구 레포 `kiii-kiii-workspace`의 `paper/` submodule 입니다.
 - `main.tex` → `sections/*.tex`. 제출 모드 `\documentclass[sigconf,anonymous,review]{acmart}`; 카메라레디는 `[sigconf]` + `\anonymousfalse`.
