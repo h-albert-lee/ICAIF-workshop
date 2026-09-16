@@ -4,10 +4,16 @@
 \documentclass[sigconf,anonymous,review]{acmart}
 
 \usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage{xurl}           % Allow long schema labels and URLs to wrap.
 \usepackage{xcolor}
 \usepackage{kotex}          % Korean examples in text; comment out if Overleaf compiler lacks kotex (use xelatex/lualatex)
 \usepackage{enumitem}
 \setlist{nosep,leftmargin=*}
+% A last-pass line-breaking allowance for narrow columns; no changes to
+% ACM margins, type sizes, line spacing, or paragraph spacing.
+\setlength{\emergencystretch}{2em}
 
 %% --- anonymisation helpers: \anonv{visible}{hidden} shows the first arg in review mode
 \newif\ifanonymous\anonymoustrue
@@ -29,9 +35,10 @@
 
 
 %% Name: \kiii = Kiii^2 (= "Kiii Kiii"). Backronym K-I-I-I = Korean / Identifiers (Tier L) / Identifiability (Tier I) / Ill-formed inputs (variation axis)
-\newcommand{\kiii}{\textsc{Kiii}$^{2}$}
+\newcommand{\kiii}{Kiii\textsuperscript{2}}
 %% Title spells the name "Kiii-Kiii" (after the girl group); body text uses \kiii (= Kiii^2) for the dataset.
-\title[Kiii-Kiii: Korean Identifiers, Identifiability, and Ill-formed Inputs]{Kiii-Kiii: Korean Identifiers, Identifiability, and Ill-formed Inputs\\ \large A Regulation-Grounded Benchmark for Financial PII Detection}
+\title[Kiii-Kiii: Korean Financial PII Detection]{Kiii-Kiii: Korean Identifiers, Identifiability, and Ill-formed Inputs}
+\subtitle{A Regulation-Grounded Benchmark for Financial PII Detection}
 %% alternatives kept for the record:
 %%  Kiii^2: Benchmarking Korean Financial PII across Identifiers, Identifiability, and Irregular Surface Forms
 %%  Korean Financial PII under Imperfect Inputs: an Identifiability-Aware Benchmark for AI DLP (Kiii^2)
