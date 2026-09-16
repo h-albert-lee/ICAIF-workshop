@@ -9,6 +9,12 @@
 \usepackage{xurl}           % Allow long schema labels and URLs to wrap.
 \usepackage{xcolor}
 \usepackage{kotex}          % Korean examples in text; comment out if Overleaf compiler lacks kotex (use xelatex/lualatex)
+% Keep Hangul upright within Latin emphasis: these fonts have no italic face.
+\setmainhangulfont{UnBatang.ttf}[
+  BoldFont=UnBatangBold.ttf,
+  ItalicFont=UnBatang.ttf,
+  BoldItalicFont=UnBatangBold.ttf,
+  Script=Hangul,Language=Korean]
 \usepackage{enumitem}
 \setlist{nosep,leftmargin=*}
 % A last-pass line-breaking allowance for narrow columns; no changes to
