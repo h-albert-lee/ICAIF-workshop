@@ -1,10 +1,10 @@
 \section{Conclusion and Limitations}
 \label{sec:conclusion}
 
-\todo{two-sentence summary}
+\kiii{} combines a 36-category taxonomy with 1,440 synthetic financial documents and controlled input variation. The completed preview and evaluation pipeline support a planned comparison of seven systems; empirical detector findings remain to be established.
 
 \paragraph{Limitations.}
-The corpus is synthetic; realism was checked by \todo{practitioner review / IAA} but no real customer text was used, by design. Tier I is not a legal classification. Korean APIs that require account registration and review (e.g.\ CLOVA Studio) were not evaluated. Encoded evasion is deferred to an adversarial track. Statutory citations reflect Korean law as of September 2026.
+Synthetic composition, automatic boundary rules and format checks do not establish real-world representativeness. Near-duplicate semantic content has not been audited. STT settings are design choices, Tier I is not a legal classification, and extraction scores do not measure re-identification risk. Generator and length imbalance requires stratified reporting. Encoded evasion is deferred to a separate adversarial setting.
 
-\paragraph{Ethics.}
-No real personal data was used or generated from real data; all identifiers are checksum-valid but fictitious. The benchmark measures detection, not misuse; identifiability-tier categories are released to help defenders and are not paired with attack prompts. \anonv{}{Model attributions: ``Powered by HyperCLOVA X''; ``Powered by Kanana''.}
+\paragraph{Ethics and availability.}
+No real customer records were used for generation. Identifiers are synthetic, although coincidental matches to real values cannot be ruled out. The benchmark supports detection research and contains no attack prompts. The preview dataset is released under CC BY-NC 4.0, with a formal release to follow.\anonv{}{ Dataset: \url{https://huggingface.co/datasets/nmixx-fin/kiii-kiii}.}

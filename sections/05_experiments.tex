@@ -1,8 +1,11 @@
 \section{Experimental Setup}
 \label{sec:setup}
 
-\paragraph{Systems.}
-Rule baselines: Presidio with its Korean recognisers enabled, and ko-pii (checksum and anchor rules). Token classifiers: OpenAI Privacy Filter (English) and its multilingual fine-tune, and a KLUE-RoBERTa-large classifier fine-tuned on our training split as an in-domain ceiling. Frontier APIs: \todo{gpt-5.6-sol/luna, claude-sonnet-5, gemini-3.8-flash, solar-pro4}. Open weights: \todo{Qwen3.6-35B-A3B, gpt-oss-120b, Gemma-4-31B, Llama-3.1-8B}. Korean-developed open weights: \todo{Kanana-2-30B-A3B, HyperCLOVAX-SEED-Think-14B, EXAONE-4.0-32B, A.X-3.1-Light vs A.X-4.0-Light (same size, native vs Qwen-derived tokeniser)}, and small models \todo{Qwen3.6-9B, Mi:dm-2.0-Mini}. Models used for corpus composition are reported but excluded from the headline ranking.
+\paragraph{Systems and data use.}
+The planned comparison includes Claude Sonnet 5, Gemini 3.8 Flash, Qwen3.6-35B-A3B and Kanana-2-30B-A3B, plus three inference-only baselines: Presidio with Korean recognizers and custom rules, ko-pii, and OpenMed/privacy-filter-multilingual. Baseline label mappings and exact model revisions must be verified before execution. No system is trained or fine-tuned on this benchmark. Prompt, mapping and threshold choices are to be frozen using separate, non-overlapping pilot examples.
 
-\paragraph{Protocol.}
-Identical zero-shot prompts, temperature 0, JSON output; reasoning models with thinking on and off; three seeds for open models. All open models run on a single 80\,GB GPU. \todo{prompt version, max context handling for 16k documents}
+\paragraph{Full-context, targeted output.}
+A gold-blind partition assigns each document character to one target core. Each LLM request receives the full document but returns only spans starting in its target core, with boundary context supplied to permit completion of crossing spans. Exact quoted text and an occurrence index are converted to Unicode character offsets in code; predictions are merged by document. The local-window ablation uses the same cores with nearby context instead of the entire document. Provisional settings are 1,200-character cores, 1,200-character halos and a 4,096-token output cap, pending pilot calibration. Any gold span the fixed output protocol cannot represent remains in the denominator and is reported in a coverage audit.
+
+\paragraph{Capacity and failure accounting.}
+Actual tokenizer and chat-template counts, including the output reserve, determine a common eligible document set before inference; exclusions are reported and inputs are never silently truncated. Invalid JSON, invalid items, truncation and failed or missing requests yield no predictions for the affected core, leaving its gold spans as false negatives. Temperature and reasoning settings are recorded per model. We report request counts, tokens, cost, latency and failure rate: repeated full-context requests evaluate a multi-call extraction system, not single-call model performance. Uncertainty is estimated by paired document bootstrap (2,000 resamples, seed 0).

@@ -1,18 +1,10 @@
-\section{Results}
+\section{Results and Analysis Plan}
 \label{sec:results}
 
-\todo{Table 2: main leaderboard (18 rows × L-id F1 / L-attr F1 / I F1 / T0–T3 F1 / de-id recall / consistency).}
+\todo{Table 2: main leaderboard after detector runs: overall exact F1; L-identifier, L-attribute and I-attribute F1; failure rate and cost. No detector scores are available yet.}
 
-\todo{Figure 2: F1 vs variation level, four system groups (rules, international open, Korean open, API).}
+\paragraph{Legal and identifiability tiers.}
+Report each model's precision and recall on L-identifiers, L-attributes and I-attributes, crossed with T0--T3. Inspect category confusions and missed contextual attributes under the same supplied taxonomy. Differences may reflect format recognition, instruction following or context handling; attribution to national privacy norms would require a separate controlled experiment.
 
-\paragraph{Finding 1 — rules end at T1.}
-\todo{}
-
-\paragraph{Finding 2 — Korean-native training helps on formats, not on structure.}
-\todo{}
-
-\paragraph{Finding 3 — partial masking and agent read-back are the leakage modes DLP misses.}
-\todo{per-op recall table: \nolinkurl{partial_mask}, \nolinkurl{hangul_digits}, \nolinkurl{chunk_split}, \nolinkurl{agent_readback}, \nolinkurl{anchor_missing}}
-
-\paragraph{Finding 4 — multi-subject and length.}
-\todo{degradation with 1→3→8 subjects and 1k→16k tokens; consistency metric}
+\paragraph{Input variation and context.}
+Plot T-level curves and operation-level recall, including partial masking, Hangul digits, chunk splitting and agent read-back. Compare full-context and local-window extraction at fixed output cores, stratifying by subject count, subject role and realized length. Report all-mentions exact recall and hard-negative false positives alongside span F1. Break down scores by generator and length jointly because the generator distribution is not uniform across length strata.
