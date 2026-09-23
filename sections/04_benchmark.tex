@@ -13,5 +13,8 @@ The preview contains 1,440 documents and 218,664 spans: 144 documents per type, 
 \paragraph{Automatic validation.}
 All 1,440 documents pass the release checks for schema, span offsets and surface text, category membership, applicable identifier constraints and generation-plan requirements. Exact duplicate document text is rejected. Attribute boundaries originate in composition tags and operational boundary rules; successful structural checks do not establish semantic completeness or production realism. We retain generator, operation and subject-role provenance for stratified audits.
 
+\paragraph{Practitioner appropriateness review.}
+Five reviewers with financial-sector employment experience each inspected a different 10\% sample. They judged the documents broadly similar to financial-sector documents and suitable for use as a dataset. This qualitative review assessed document appropriateness, not span-label correctness or boundary agreement; no inter-annotator agreement statistic is claimed.
+
 \paragraph{Task and metrics.}
 The primary task is typed span extraction, scored by exact category-and-boundary micro-F1. Supplementary measures are category-aware character coverage, per-operation recall, hard-negative false-positive rate and recall requiring every annotated mention of an entity to be recovered exactly. This last measure tests extraction completeness, not entity linking. Non-PII character masking is an over-masking proxy, not a semantic utility score. Formal de-identification and risk-weighted privacy evaluation are outside the current experiment.
