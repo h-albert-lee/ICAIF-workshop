@@ -1,10 +1,10 @@
 \section{Conclusion and Limitations}
 \label{sec:conclusion}
 
-\kiii{} combines a 36-category taxonomy with 1,440 synthetic financial documents and controlled input variation. The completed preview and evaluation pipeline support a planned comparison of seven systems; empirical detector findings remain to be established.
+\kiii{} makes Korean financial privacy detection an explicit evaluation problem: a traceable target policy, noncanonical input forms and a matched test of document context. Its 1,440-document preview and evaluation protocol support analysis of span recovery and output reliability together. Comparative detector findings remain to be established.
 
 \paragraph{Limitations.}
-The practitioner review supports perceived document appropriateness; it does not validate span annotations or establish real-world representativeness. Near-duplicate semantic content has not been audited. STT settings are design choices, Tier I is not a legal classification, and extraction scores do not measure re-identification risk. Generator and length imbalance requires stratified reporting. Encoded evasion is deferred to a separate adversarial setting.
+Synthetic composition permits controlled variation but does not establish production representativeness. Practitioner review assessed document appropriateness, not span correctness or boundary agreement. Attribute tags may be incomplete or ambiguous despite valid offsets, and semantic near-duplicates have not been audited. T levels are not paired counterfactuals; STT frequencies are design settings. Generator/length imbalance and common-capacity exclusions limit generalization. Tier I is an operational category group, and extraction scores measure neither legal compliance nor re-identification risk. Encoded evasion is outside scope.
 
 \paragraph{Ethics and availability.}
-No real customer records were used for generation. Identifiers are synthetic, although coincidental matches to real values cannot be ruled out. The benchmark supports detection research and contains no attack prompts. The preview dataset is released under CC BY-NC 4.0, with a formal release to follow.\anonv{}{ Dataset: \url{https://huggingface.co/datasets/nmixx-fin/kiii-kiii}.}
+No real customer records were used for generation. Identifiers are synthetic, although coincidental matches to real values cannot be ruled out. The preview is released under CC BY-NC 4.0, with a formal release to follow.\anonv{}{ Dataset: \url{https://huggingface.co/datasets/nmixx-fin/kiii-kiii}.}

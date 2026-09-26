@@ -1,10 +1,10 @@
 \section{Results and Analysis Plan}
 \label{sec:results}
 
-\todo{Table 2: main leaderboard after detector runs: overall exact F1; L-identifier, L-attribute and I-attribute F1; failure rate and cost. No detector scores are available yet.}
+\todo{Table 2: main leaderboard after common-cohort finalization and paired detector runs. CPU baselines are complete on the full release; comparative GPU results remain pending. Report exact F1 by taxonomy group, request failure rate and context condition.}
 
-\paragraph{Legal and identifiability tiers.}
-Report each model's precision and recall on L-identifiers, L-attributes and I-attributes, crossed with T0--T3. Inspect category confusions and missed contextual attributes under the same supplied taxonomy. Differences may reflect format recognition, instruction following or context handling; attribution to national privacy norms would require a separate controlled experiment.
+\paragraph{Which information is recovered?}
+Compare precision and recall for L-identifiers, L-attributes and I-attributes, then examine variation levels and applied operations. This distinguishes coverage of familiar identifier patterns from recovery of personal attributes under the same target policy. Missed categories alone do not establish a model's legal or cultural beliefs.
 
-\paragraph{Input variation and context.}
-Plot T-level curves and operation-level recall, including partial masking, Hangul digits, chunk splitting and agent read-back. Compare full-context and local-window extraction at fixed output cores, stratifying by subject count, subject role and realized length. Report all-mentions exact recall and hard-negative false positives alongside span F1. Break down scores by generator and length jointly because the generator distribution is not uniform across length strata.
+\paragraph{When does wider context help?}
+Compare full/local outputs for the same documents and target cores, stratified by subject count and realized length. Interpret changes in exact F1 alongside failure rates, all-mentions recall and hard-negative false positives. A negative full/local difference may reflect missed spans, added false positives or less reliable output; raw-response audits distinguish these possibilities. Report generator and length jointly because their distributions are not independent. The two medium-model additions are exploratory, and poor small-model runs remain in the comparison.
