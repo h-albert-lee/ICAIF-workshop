@@ -1,10 +1,32 @@
-\section{Results and Analysis Plan}
+\section{Results and Analysis}
 \label{sec:results}
 
-\todo{Table 2: main leaderboard after common-cohort finalization and paired detector runs. CPU baselines are complete on the full release; comparative GPU results remain pending. Report exact F1 by taxonomy group, request failure rate and context condition.}
+The main leaderboard (Table~\ref{tab:main-results}) reserves a common-cohort comparison; pending cells are not zero scores. Final reporting requires native capacity records and completed paired runs. Archived-run diagnostics are separated in Appendix~\ref{app:diagnostics}.
 
-\paragraph{Which information is recovered?}
-Compare precision and recall for L-identifiers, L-attributes and I-attributes, then examine variation levels and applied operations. This distinguishes coverage of familiar identifier patterns from recovery of personal attributes under the same target policy. Missed categories alone do not establish a model's legal or cultural beliefs.
+\begin{table}[t]
+\caption{Result layout for the common evaluation cohort. Columns report strict micro-F1 (0--100); F/L denote full/local context, and Doc. denotes a document-level baseline. P = pending verification or completion; -- = not applicable. Fail is the percentage of failed LLM requests (F/L). No rankings are inferred from pending cells.}
+\label{tab:main-results}
+\small
+\begin{tabularx}{\columnwidth}{@{}>{\RaggedRight\arraybackslash}Xrrrr@{}}
+\toprule
+System & Full & Local & Doc. & Fail (F/L) \\
+\midrule
+Qwen3.5-2B & P & P & -- & P/P \\
+Qwen3.5-4B & P & P & -- & P/P \\
+Kanana-2-3B & P & P & -- & P/P \\
+Presidio & -- & -- & P & -- \\
+ko-pii & -- & -- & P & -- \\
+OpenMed & -- & -- & P & -- \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Exploratory extension (separate cohort audit)}} \\
+Qwen3.5-9B & P & P & -- & P/P \\
+Kanana-1.5-8B & P & P & -- & P/P \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
-\paragraph{When does wider context help?}
-Compare full/local outputs for the same documents and target cores, stratified by subject count and realized length. Interpret changes in exact F1 alongside failure rates, all-mentions recall and hard-negative false positives. A negative full/local difference may reflect missed spans, added false positives or less reliable output; raw-response audits distinguish these possibilities. Report generator and length jointly because their distributions are not independent. The two medium-model additions are exploratory, and poor small-model runs remain in the comparison.
+\paragraph{Coverage and context.}
+Report L-identifier, L-attribute and I-attribute precision/recall/F1, then stratify by T level and applied operation (Appendix~\ref{app:result-layout}). Compare full/local outputs on identical documents using paired confidence intervals, alongside failure rates and all-mentions recall. Examine realized length, subject count and generator jointly; T levels are not paired rewrites. Missed spans alone do not establish legal or cultural beliefs.
+
+\paragraph{Output reliability.}
+Strict scoring includes request-level rejection. Separately, post-hoc itemwise validation retains valid siblings and charges one exact false positive per invalid parsed item; a further stage removes only an entire-response JSON code fence. Neither stage repairs quotes, categories, occurrences or truncation. Character overlap gives partial boundary credit but cannot penalize unanchorable items in character units. These diagnostics retain all gold and do not replace headline scores.

@@ -9,3 +9,80 @@
 \section{Prompts}
 \label{app:prompts}
 \todo{composition prompt excerpt; extraction prompt; de-identification prompt.}
+
+\section{Result decomposition and paired comparison}
+\label{app:result-layout}
+
+Tables~\ref{tab:taxonomy-results} and~\ref{tab:paired-context} specify the reporting layout. P denotes a result awaiting completion or provenance verification, never an observed zero. Final cohort size and exclusions must accompany every comparison. The two medium models are exploratory extensions, not replacements for core models. Category-level and T-level breakdowns remain in the reproducibility artifacts; subgroup scores aggregate counts rather than averaging category F1.
+
+\begin{table*}[tp]
+\caption{Taxonomy-group reporting template. Strict precision (Prc), recall (Rec) and F1 on a 0--100 scale; F/L = full/local context, D = document-level baseline. Every numeric cell is pending (P). Core and extension comparisons require their respective cohort audits.}
+\label{tab:taxonomy-results}
+\small
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llrrrrrrrrr@{}}
+\toprule
+& & \multicolumn{3}{c}{L / identifier} & \multicolumn{3}{c}{L / attribute} & \multicolumn{3}{c}{I / attribute} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-8}\cmidrule(l){9-11}
+System & Context & Prc & Rec & F1 & Prc & Rec & F1 & Prc & Rec & F1 \\
+\midrule
+Qwen3.5-2B & F & P & P & P & P & P & P & P & P & P \\
+ & L & P & P & P & P & P & P & P & P & P \\
+Qwen3.5-4B & F & P & P & P & P & P & P & P & P & P \\
+ & L & P & P & P & P & P & P & P & P & P \\
+Kanana-2-3B & F & P & P & P & P & P & P & P & P & P \\
+ & L & P & P & P & P & P & P & P & P & P \\
+Presidio & D & P & P & P & P & P & P & P & P & P \\
+ko-pii & D & P & P & P & P & P & P & P & P & P \\
+OpenMed & D & P & P & P & P & P & P & P & P & P \\
+\midrule
+Qwen3.5-9B (extension) & F & P & P & P & P & P & P & P & P & P \\
+ & L & P & P & P & P & P & P & P & P & P \\
+Kanana-1.5-8B (extension) & F & P & P & P & P & P & P & P & P & P \\
+ & L & P & P & P & P & P & P & P & P & P \\
+\bottomrule
+\end{tabular*}
+\end{table*}
+
+\par\medskip
+\noindent\begin{minipage}{\columnwidth}
+\captionof{table}{Paired context-effect layout. $\Delta$ is full minus local strict micro-F1, in points; positive favors full context. CI: document-paired bootstrap, 2,000 resamples, seed 0. No estimates are inserted before paired provenance review.}
+\label{tab:paired-context}
+\small
+\begin{tabularx}{\columnwidth}{@{}>{\RaggedRight\arraybackslash}Xrrr@{}}
+\toprule
+System & $N$ docs & $\Delta$F1 & 95\% CI \\
+\midrule
+Qwen3.5-2B & P & P & P \\
+Qwen3.5-4B & P & P & P \\
+Kanana-2-3B & P & P & P \\
+\midrule
+Qwen3.5-9B & P & P & P \\
+Kanana-1.5-8B & P & P & P \\
+\bottomrule
+\end{tabularx}
+\end{minipage}\par\medskip
+
+\section{Archived-response diagnostics (provisional)}
+\label{app:diagnostics}
+
+The following snapshot audits four completed conditions, each with 1,440 documents, 13,723 requests and 218,664 gold spans. Every archived strict metric and failure record was replayed. Native token-count files and the underlying cohort gate have not yet been independently verified, so these values are not a finalized cross-model leaderboard. Pilot-only uploads are excluded. The diagnostic rules were selected after inspecting strict failures and are explicitly post-hoc.
+
+\begin{table*}[tp]
+\caption{Provisional completed-run diagnostics (0--100 scale for F1 and percentages). S: original strict exact F1; I: itemwise exact F1; W: whole-response JSON-fence removal plus itemwise exact F1; C: character-overlap F1 after W. I/W include one exact FP per invalid parsed item. C uses anchored predictions and all gold but cannot charge character FP for unanchorable items. W-Prc/W-Rec and invalid-item counts qualify its interpretation. Strict Fail is request rejection, not a server-outage rate.}
+\label{tab:response-diagnostics}
+\small
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llrrrrrrrr@{}}
+\toprule
+System & Context & S & I & W & C & W-Prc & W-Rec & Invalid items & Strict Fail \\
+\midrule
+% DIAGNOSTIC_ROWS_BEGIN
+Kanana-2-3B & F & 1.02 & 3.16 & 3.17 & 1.87 & 5.64 & 2.20 & 75,465 & 92.33 \\
+Kanana-2-3B & L & 1.62 & 4.09 & 4.09 & 1.97 & 12.02 & 2.47 & 31,764 & 76.68 \\
+Qwen3.5-2B & F & 0.12 & 0.87 & 1.64 & 0.66 & 3.39 & 1.08 & 64,498 & 97.66 \\
+Qwen3.5-4B & L & 0.97 & 5.92 & 8.59 & 5.46 & 12.59 & 6.52 & 83,370 & 89.98 \\
+% DIAGNOSTIC_ROWS_END
+\bottomrule
+\end{tabular*}
+\end{table*}
+
+Valid items can be recovered from rejected requests, but gains also depend on added true and false positives; this is not a causal separation of format and recognition ability. Invalid top-level JSON and terminal failures remain empty, with all gold false negatives. Unparseable outputs have unknown item counts, so no item-count penalty is invented. Character scores weight characters rather than mentions and need not exceed exact F1. Strict results remain the primary protocol. Model settings and prompts are not tuned from these outcomes.
