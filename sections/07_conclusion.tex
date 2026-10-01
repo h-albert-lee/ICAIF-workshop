@@ -1,10 +1,7 @@
 \section{Conclusion and Limitations}
 \label{sec:conclusion}
 
-\kiii{} makes Korean financial privacy detection an explicit evaluation problem: a traceable target policy, noncanonical input forms and a matched test of document context. Its 1,440-document preview and evaluation protocol support analysis of span recovery and output reliability together. Comparative detector findings remain to be established.
+\kiii{} links a traceable Korean financial detection policy to noncanonical inputs and a matched context task. Across completed runs, output-contract failures obscure recoverable PII, while local context consistently improves the post-hoc detection proxy. Reporting strict extraction, structural compliance and all-gold detection together exposes different failure modes without forgiving missed sensitive information.
 
-\paragraph{Limitations.}
-Synthetic composition permits controlled variation but does not establish production representativeness. Practitioner review assessed document appropriateness, not span correctness or boundary agreement. Attribute tags may be incomplete or ambiguous despite valid offsets, and semantic near-duplicates have not been audited. T levels are not paired counterfactuals; STT frequencies are design settings. Generator/length imbalance and common-capacity exclusions limit generalization. Tier I is an operational category group, and extraction scores measure neither legal compliance nor re-identification risk. Encoded evasion is outside scope.
-
-\paragraph{Ethics and availability.}
-No real customer records were used for generation. Identifiers are synthetic, although coincidental matches to real values cannot be ruled out. The preview is released under CC BY-NC 4.0, with a formal release to follow.\anonv{}{ Dataset: \url{https://huggingface.co/datasets/nmixx-fin/kiii-kiii}.}
+\paragraph{Limitations and ethics.}
+Synthetic documents and practitioner appropriateness review do not establish production representativeness or span correctness. Attribute boundaries may be ambiguous, and semantic near-duplicates have not been audited. T levels are not paired counterfactuals; STT frequencies are design settings. Post-hoc model extensions, decoding/precision differences, unavailable native counts and unverified pilot calibration limit generalization. The diagnostic is an observable proxy, not format-independent ability or legal compliance. No real customer records were used, though coincidental identifier matches remain possible. The preview is CC BY-NC 4.0; a formal release will follow.\anonv{}{ Dataset: \url{https://huggingface.co/datasets/nmixx-fin/kiii-kiii}.}

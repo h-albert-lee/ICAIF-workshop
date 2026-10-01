@@ -13,5 +13,5 @@ Existing work studies query-aware PII protection~\cite{shen2025piibench}, multil
 \begin{enumerate}
   \item \textbf{An auditable detection policy:} 36 categories separating statutory grounds (24) from additional identifiability concerns (12), with category definitions and masking metadata kept distinct (\S\ref{sec:taxonomy}).
   \item \textbf{A controlled financial testbed:} 1,440 synthetic documents and 218,664 spans covering ten document types, multiple subjects and T0--T3 variation, with code-generated identifiers and span-level provenance (\S\ref{sec:benchmark}).
-  \item \textbf{A matched context evaluation:} full-document and local-window inputs applied to identical target regions and output budgets, with common capacity checks and explicit failure accounting (\S\ref{sec:setup}). This supports category- and variation-specific analysis of when wider context helps or hinders extraction.
+  \item \textbf{A matched context evaluation:} full-document and local-window inputs applied to identical target regions and output budgets, across 12 language models and three frozen baselines, with explicit failure accounting (\S\ref{sec:setup}). Archived-response diagnostics separate output compliance, grounding errors and observable detection, revealing why strict extraction scores alone can conceal useful span recovery.
 \end{enumerate}
